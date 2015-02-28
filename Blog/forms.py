@@ -1,7 +1,7 @@
 __author__ = 'erkoc'
 
 from django import forms
-from Blog.models import Post
+from blog.models import Post
 
 class PostForm(forms.ModelForm):
 
