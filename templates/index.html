@@ -20,6 +20,7 @@
             <a href="{% url 'post_detail' post.id  %}"><h2>{{ post.title }}</h2></a>
             <b>{{ post.content }}</b><br/><br/>
             <b><a href="{% url 'delete_post' post.id %}">Delete Post</a> </b>
+            <b><a href="{% url 'edit_post' post.id %}">Edit Post</a></b>
             <hr/>
         {% endfor %}
     {% endif %}

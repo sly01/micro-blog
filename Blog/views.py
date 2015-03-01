@@ -54,7 +54,22 @@ def delete_post(request, pk):
 
     return redirect(reverse('home'))
 
+@login_required(login_url='/login')
+def edit_post(request, pk):
+    post = Post.objects.get(id=pk)
+    form = PostForm(instance=post)
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('home'))
 
+    return render_to_response('edit.html', {
+        'form': form,
+        'post': post
+    }, RequestContext(request))
+
+@login_required(login_url='/login')
 def add_comment(request, pk):
     form = CommentForm()
 

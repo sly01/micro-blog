@@ -21,4 +21,6 @@ urlpatterns = patterns('',
     url(r'^delete_post/(?P<pk>[\d]+)$', blog.views.delete_post, name='delete_post'),
 
     url(r'^new_comment/(?P<pk>[\d]+)$', blog.views.add_comment, name='new_comment'),
+    url(r'^edit_post/(?P<pk>[\d]+)$', blog.views.edit_post, name='edit_post'),
+
 )
