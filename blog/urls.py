@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'blog.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
+
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login', profiles.views.login, name='login'),
     url(r'^logout', profiles.views.logout, name='logout'),
@@ -18,4 +19,6 @@ urlpatterns = patterns('',
     url(r'^new_post', blog.views.new_post, name='new_post'),
     url(r'^post/(?P<pk>[\d]+)$', blog.views.post_detail, name='post_detail'),
     url(r'^delete_post/(?P<pk>[\d]+)$', blog.views.delete_post, name='delete_post'),
+
+    url(r'^new_comment/(?P<pk>[\d]+)$', blog.views.add_comment, name='new_comment'),
 )

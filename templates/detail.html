@@ -8,5 +8,26 @@
     <h2>{{ post.title }}</h2>
     <p>{{ post.content }}</p>
     <h6>{{ post.created }}</h6>
+
+    <!-- Comments -->
+
+    {% for comment in comments %}
+        <div class="comment" style="border: 1px solid black">
+        <p>{{ comment.content }}</p><h5>{{ comment.user }}</h5>
+        </div>
+    {% endfor %}
+
+
+    <form action="{% url 'new_comment' post.id %}" method="post">
+        <table>
+            <tr>
+                <td><h3>Comment:</h3></td><td><input type="text" name="content"/></td>
+                {% csrf_token %}
+                <td><input type="submit" value="Add Comment"/></td>
+            </tr>
+        </table>
+
+    </form>
+
 </body>
 </html>

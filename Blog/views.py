@@ -1,8 +1,8 @@
-from django.shortcuts import RequestContext,HttpResponse, render_to_response, redirect, get_object_or_404
+from django.shortcuts import RequestContext,HttpResponse, render_to_response, redirect, get_object_or_404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
-from models import Post
-from forms import PostForm
+from models import Post, Comment
+from forms import PostForm, CommentForm
 # Create your views here.
 
 
@@ -40,14 +40,29 @@ def new_post(request):
 @login_required(login_url='/login')
 def post_detail(request, pk):
     post = get_object_or_404(Post, id=pk)
+    comments = Comment.objects.filter(post=pk)
 
     return render_to_response('detail.html', {
-        'post': post
+        'post': post,
+        'comments': comments
     }, RequestContext(request))
 
 
 @login_required(login_url='/login')
 def delete_post(request, pk):
-    post = Post.objects.filter(id=pk).delete()
+    Post.objects.filter(id=pk).delete()
 
     return redirect(reverse('home'))
+
+
+def add_comment(request, pk):
+    form = CommentForm()
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+
+        if form.is_valid():
+            form.instance.user = request.user
+            form.instance.post = Post.objects.get(pk=pk)
+            form.save()
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
