@@ -32,7 +32,7 @@ def new_post(request):
             form.save()
             return redirect(reverse("home"))
 
-    return render_to_response('form.html',{
+    return render_to_response('form.html', {
         'form': form
     }, RequestContext(request))
 
@@ -69,6 +69,7 @@ def edit_post(request, pk):
         'post': post
     }, RequestContext(request))
 
+
 @login_required(login_url='/login')
 def add_comment(request, pk):
     form = CommentForm()
@@ -78,6 +79,15 @@ def add_comment(request, pk):
 
         if form.is_valid():
             form.instance.user = request.user
-            form.instance.post = Post.objects.get(pk=pk)
+            form.instance.post = Post.objects.get(id=pk)
             form.save()
             return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+    return render_to_response('detail.html', {}, RequestContext(request))
+
+
+@login_required(login_url='/login')
+def delete_comment(request, pk):
+    Comment.objects.get(id=pk).delete()
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

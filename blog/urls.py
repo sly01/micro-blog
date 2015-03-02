@@ -18,9 +18,11 @@ urlpatterns = patterns('',
     url(r'^$', blog.views.home, name='home'),
     url(r'^new_post', blog.views.new_post, name='new_post'),
     url(r'^post/(?P<pk>[\d]+)$', blog.views.post_detail, name='post_detail'),
+    url(r'^edit_post/(?P<pk>[\d]+)$', blog.views.edit_post, name='edit_post'),
     url(r'^delete_post/(?P<pk>[\d]+)$', blog.views.delete_post, name='delete_post'),
 
     url(r'^new_comment/(?P<pk>[\d]+)$', blog.views.add_comment, name='new_comment'),
-    url(r'^edit_post/(?P<pk>[\d]+)$', blog.views.edit_post, name='edit_post'),
+    url(r'^delete_comment/(?P<pk>[\d]+)$', blog.views.delete_comment, name='delete_comment'),
+
 
 )

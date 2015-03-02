@@ -14,6 +14,7 @@
     {% for comment in comments %}
         <div class="comment" style="border: 1px solid black">
         <p>{{ comment.content }}</p><h5>{{ comment.user }}</h5>
+        <a href="{% url 'delete_comment' comment.id %}">Delete Comment</a>
         </div>
     {% endfor %}
 
