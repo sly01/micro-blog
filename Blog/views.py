@@ -17,7 +17,7 @@ def home(request):
             'posts': posts
             }, RequestContext(request))
     else:
-        return HttpResponse("Please login first.<br><a href='login'>Login</a>")
+        return HttpResponse("Please login first.<br><a href='login'>Login</a> or <a href='register'>Register</a>")
 
 
 @login_required(login_url='/login')

@@ -5,13 +5,13 @@
     <title>Index Page</title>
 </head>
 <body>
-    {% if user.is_authenticated %}
+    <!-- {% if user.is_authenticated %} -->
        Welcome <b>{{ user }}</b>
         <a href="{% url 'logout' %}">Logout</a>
         <a href="{% url 'new_post' %}">Create Post</a>
-     {% else %}
-        <a href="{% url 'login' %}">Login</a> <a href="{% url 'register' %}">Registration</a>
-    {% endif %}
+     <!-- {% else %} -->
+       <!-- <a href="{% url 'login' %}">Login</a> <a href="{% url 'register' %}">Registration</a> -->
+    <!-- {% endif %} -->
 
     {% if not posts %}
         <h3>Post bulunamadi</h3>
